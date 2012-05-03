@@ -11,13 +11,13 @@ namespace Benchmark
 			if (source == null || !source.Any())
 				throw new ArgumentException("Cannot calculate median unless source contains at least 1 element");
 
-			var sortedList = source.OrderBy(x => x);
-			int itemIndex = sortedList.Count() / 2;
+			var sorted = source.OrderBy(x => x).ToArray();
+			int itemIndex = sorted.Length / 2;
 
-			if (sortedList.Count() % 2 == 0)
-				return (sortedList.ElementAt(itemIndex) + sortedList.ElementAt(itemIndex - 1)) / 2;
+			if (sorted.Length % 2 == 0)
+				return (sorted[itemIndex] + sorted[itemIndex - 1]) / 2;
 
-			return sortedList.ElementAt(itemIndex);
+			return sorted[itemIndex];
 		}		
 	}
 }
